@@ -1,0 +1,96 @@
+Name :- PRASAD SATPUTE
+Group :- D4
+Sub-Group :- C
+
+1. Display employees where first name or last name start with S.
+    -> select * from employees where FIRST_NAME like 'S%' and LAST_NAME like 'S%';
+
+2. Display details of the employees where commission percentage is null and salary in the range 5000 to 10000 and department is 30.
+    -> select * from employees where COMMISSION_PCT is null and DEPARTMENT_ID = 30 and SALARY between 5000 and 10000;
+
+3. Display all employees who have job_id IT_PROG and FI_ACCOUNT.
+    -> select * from employees where JOB_ID in ('IT_PROG', 'FI_ACCOUNT');
+
+4. Display all the Part names with weight between 12 and 14 (inclusive of both).
+    -> select Pname, Weight from p where Weight between 12 and 14;
+
+5. Display all the Suppliers except the supplier from London.
+    -> select * from s where City != 'London';
+
+6. Display all the suppliers with a status between 10 and 20.
+    -> select * from s where Status between 10 and 20;
+
+7. Display PNAME and COLOR from the P table for the city London.
+    -> select Pname, Color from p where city = 'London';
+
+8. Display all the suppliers from London.
+    -> select * from s where City = 'London';
+
+9. Display all suppliers from Paris or London.
+    -> select * from s where City in ('Paris', 'London');
+    +------+-------+--------+--------+
+    | S#   | Sname | Status | City   |
+    +------+-------+--------+--------+
+    | S1   | Smith |     20 | London |
+    | S2   | Jones |     10 | Paris  |
+    | S3   | Blake |     30 | Paris  |
+    | S4   | Clark |     20 | London |
+    +------+-------+--------+--------+
+
+10. Display all project in Athens.
+    -> select * from p where CITY = 'Athens';
+    Empty set (0.00 sec)
+
+11.Write a query to get Product list ( id name unit price ) where products cost between $ 15 and $ 25.
+    -> select ProductID, ProductName, UnitPrice from products where UnitPrice between 15 and 25;
+    +-----------+----------------------------------+-----------+
+    | ProductID | ProductName                      | UnitPrice |
+    +-----------+----------------------------------+-----------+
+    |         1 | Chai                             |   18.0000 |
+    |         2 | Chang                            |   19.0000 |
+    |         4 | Chef Anton's Cajun Seasoning     |   22.0000 |
+    |         5 | Chef Anton's Gumbo Mix           |   21.3500 |
+    |         6 | Grandma's Boysenberry Spread     |   25.0000 |
+    |        11 | Queso Cabrales                   |   21.0000 |
+    |        14 | Tofu                             |   23.2500 |
+    |        15 | Genen Shouyu                     |   15.5000 |
+    |        16 | Pavlova                          |   17.4500 |
+    |        22 | Gustaf's Knckebrd                |   21.0000 |
+    |        35 | Steeleye Stout                   |   18.0000 |
+    |        36 | Inlagd Sill                      |   19.0000 |
+    |        39 | Chartreuse verte                 |   18.0000 |
+    |        40 | Boston Crab Meat                 |   18.4000 |
+    |        44 | Gula Malacca                     |   19.4500 |
+    |        49 | Maxilaku                         |   20.0000 |
+    |        50 | Valkoinen suklaa                 |   16.2500 |
+    |        55 | Pt chinois                       |   24.0000 |
+    |        57 | Ravioli Angelo                   |   19.5000 |
+    |        65 | Louisiana Fiery Hot Pepper Sauce |   21.0500 |
+    |        66 | Louisiana Hot Spiced Okra        |   17.0000 |
+    |        70 | Outback Lager                    |   15.0000 |
+    |        71 | Flotemysost                      |   21.5000 |
+    |        73 | Rd Kaviar                        |   15.0000 |
+    |        76 | Lakkalikri                       |   18.0000 |
+    +-----------+----------------------------------+-----------+
+
+12.Create a report showing all the company names and contact names of Northwind's customers in Buenos Aires.
+    -> select CompanyName, ContactName from customers where City = 'Buenos Aires';
+    +----------------------------+------------------+
+    | CompanyName                | ContactName      |
+    +----------------------------+------------------+
+    | Cactus Comidas para llevar | Patricio Simpson |
+    | Ocano Atlntico Ltda.       | Yvonne Moncada   |
+    | Rancho grande              | Sergio Gutirrez  |
+    +----------------------------+------------------+
+
+13.Create a report showing the product name unit price and quantity per unit of all products that are out of stock.
+    -> select ProductName, UnitPrice, QuantityPerUnit from products where UnitsInStock = 0;
+    +------------------------+-----------+----------------------+
+    | ProductName            | UnitPrice | QuantityPerUnit      |
+    +------------------------+-----------+----------------------+
+    | Chef Anton's Gumbo Mix |   21.3500 | 36 boxes             |
+    | Alice Mutton           |   39.0000 | 20 - 1 kg tins       |
+    | Thringer Rostbratwurst |  123.7900 | 50 bags x 30 sausgs. |
+    | Gorgonzola Telino      |   12.5000 | 12 - 100 g pkgs      |
+    | Perth Pasties          |   32.8000 | 48 pieces            |
+    +------------------------+-----------+----------------------+

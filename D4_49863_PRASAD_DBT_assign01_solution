@@ -1,0 +1,47 @@
+Name :- PRASAD SATPUTE
+Group :- D4
+Sub-Group :- C
+
+
+1. Create 'classwork' database. Import classwork-db.sql
+    -> CREATE DATABASE 'classwork';
+    -> USE 'classwork';
+    -> SOURCE E:/CDAC 2021/1 DATABASE/Day02/db/classwork-db.sql
+
+2. Create 'hr' database. Import hr-db.sql
+    -> CREATE DATABASE 'hr';
+    -> USE 'hr';
+    -> source E:/CDAC 2021/1 DATABASE/Day02/db/hr-db.sql
+
+3. Create 'sales' database. Import sales-db.sql
+    -> CREATE DATABASE 'sales';
+    -> USE 'sales';
+    -> source E:/CDAC 2021/1 DATABASE/Day02/db/sales-db.sql
+
+4. Create 'northwind' database. Import northwind-db.sql
+    -> CREATE DATABASE 'northwind';
+    -> USE 'northwind';
+    -> source E:/CDAC 2021/1 DATABASE/Day02/db/northwind-db.sql
+
+5. List all tables in classwork database. Display contents of all tables (one by one)
+    -> USE classwork;
+    -> SHOW TABLES;
+    -> DESCRIBE bonus;
+    -> DESCRIBE books;
+    -> DESCRIBE countries;
+    -> DESCRIBE departments;
+    -> DESCRIBE dept;
+    -> DESCRIBE dummy;
+    -> DESCRIBE emp;
+    -> DESCRIBE employees;
+    -> DESCRIBE job_history;
+    -> DESCRIBE jobs;
+    -> DESCRIBE locations;
+    -> DESCRIBE regions;
+    -> DESCRIBE salgrade;
+
+6. List all tables in sales database. Display contents of all tables (one by one)
+    -> USE sales;
+    -> DESCRIBE customers;
+    -> DESCRIBE orders;
+    -> DESCRIBE salespeople;

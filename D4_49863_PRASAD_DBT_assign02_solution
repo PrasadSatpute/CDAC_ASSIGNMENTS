@@ -1,0 +1,226 @@
+Name :- PRASAD SATPUTE
+Group :- D4
+Sub-Group :- C
+
+1. Create user with your roll number and group name. If your roll number is 12345 and
+group is d1, then username should be d1_12345. Give ALL privileges to this user all
+databases created in previous assignment. You are expected to use this user for
+completing all further assignments.
+    -> create user d4_49863@localhost identified by 'd4';
+    ->grant all privileges on classwork.* to d4_49863@localhost;
+    ->flush privileges;
+    ->grant all privileges on hr.* to d4_49863@localhost;
+    ->flush privileges;
+    ->grant all privileges on sales.* to d4_49863@localhost;
+    ->flush privileges;
+    ->grant all privileges on northwind.* to d4_49863@localhost;
+    ->flush privileges;
+    ->exit
+
+2. Create an environment variable by name MYSQL_PS1 and set it to \u> . Now start
+MySQL client CLI and you should see your username in prompt instead of mysql> .
+    ->done
+
+3. Create 'spj' database & grant all permissions to your username (created in Q.1).
+    ->mysql -u root -pmanager;
+    ->create database spj;
+    ->grant all privileges on spj.* to d4_49863@localhost;
+    ->flush privileges;
+    ->exit
+
+4. Create following tables in ‘spj’ database. (This assignment is to practice INSERT
+queries).
+    ->create table s(`S#` char(5), Sname char(20), Status smallint, City char(15));
+    ->insert into S values
+    ('S1', 'Smith', 20, 'London'),
+    ('S2', 'Jones', 10, 'Paris'),
+    ('S3', 'Blake', 30, 'Paris'),
+    ('S4', 'Clark', 20, 'London'),
+    ('S5', 'Adams', 30, 'Athens');
+
+    ->create table P (`P#` char(6), Pname char(20), Color char(6), Weight smallint ,CITY char(15));
+    ->insert into P values
+    ('P1', 'Nut', 'Red', 12, 'London'),
+    ('P1', 'Bolt', 'Green', 12, 'Paris'),
+    ('P1', 'Screw', 'Blue', 12, 'Rome'),
+    ('P1', 'Screw', 'Red', 12, 'London'),
+    ('P1', 'Cam', 'Blue', 12, 'Paris'),
+    ('P1', 'Cog', 'Red', 12, 'London');
+
+    ->create table J (`J#` char(4), Jname char(10), City char(15));
+    ->insert into J values
+    ('J1', 'Sorter', 'Paris'),
+    ('J2', 'Punch', 'Rome'),
+    ('J3', 'Reader', 'Athens'),
+    ('J4', 'Console', 'Athens'),
+    ('J5', 'Collator', 'London'),
+    ('J6', 'Terminal', 'Oslo'),
+    ('J7', 'Tape', 'London');
+
+    ->create table sp (`S#`char(4), `P#` char(4), `J#` char(4), QTY int);
+    ->insert into sp values
+    ('S1', 'P1', 'J1', 200),
+    ('S1', 'P1', 'J4', 700),
+    ('S2', 'P3', 'J1', 400),
+    ('S2', 'P3', 'J2', 200),
+    ('S2', 'P3', 'J3', 200),
+    ('S2', 'P3', 'J4', 500),
+    ('S2', 'P3', 'J5', 600),
+    ('S2', 'P3', 'J6', 400),
+    ('S2', 'P3', 'J7', 800),
+    ('S2', 'P5', 'J2', 100),
+    ('S3', 'P3', 'J1', 200),
+    ('S3', 'P4', 'J2', 500),
+    ('S4', 'P6', 'J3', 300),
+    ('S4', 'P6', 'J7', 300),
+    ('S5', 'P2', 'J2', 200),
+    ('S5', 'P2', 'J4', 100),
+    ('S5', 'P5', 'J5', 500),
+    ('S5', 'P5', 'J7', 100),
+    ('S5', 'P6', 'J2', 200),
+    ('S5', 'P1', 'J4', 100),
+    ('S5', 'P3', 'J4', 200),
+    ('S5', 'P4', 'J4', 800),
+    ('S5', 'P5', 'J4', 400),
+    ('S5', 'P6', 'J4', 500);
+
+----------------------------------------------------------------
+
+HR DATABASE
+
+1. Write a query to display the first_name, last_name using alias name “First Name",
+"Last Name".
+    -> select * from employees;
+    -> select FIRST_NAME as `FIRST NAME` , LAST_NAME as `LAST NAME` from employees;
+
+2. Write a query to get the names (first_name, last_name), salary, PF of all the
+employees (PF is calculated as 15% of salary).
+    -> select FIRST_NAME  , LAST_NAME, SALARY, SALARY * 0.15 as PF  from employees;
+
+3. Write a query to select first 10 records from a employees table.
+    -> select * from employees limit 10;
+
+4. Write a query to display job id and job title of first 5 jobs.
+    -> select EMPLOYEE_ID, JOB_ID from employees limit 5;
+
+5. Write a query to display location id, street address and postal code of 6 locations after first 3 locations.
+    -> select LOCATION_ID,  STREET_ADDRESS, POSTAL_CODE from locations limit 3, 6;
+-------------------------------------------------------------------
+6. Write a query to display job title and difference between max and min salary for that job.
+    ->
+-------------------------------------------------------------------
+7. Write a query to get unique department ID from employee table.
+    -> select distinct DEPARTMENT_ID from employees;
+
+8. Write a query to get all employee details from the employee table order by first name, descending.
+    -> select * from employees order by FIRST_NAME desc;
+
+9. Write a query to get the employee ID, names (first_name, last_name), salary in ascending order of salary.
+    -> select EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY from employees order by SALARY asc;
+-------------------------------------------------------------------
+10.Display first name and join date of the employees who is either IT Programmer or Sales Man.
+    ->
+-------------------------------------------------------------------
+11.Display details of employee with ID 150 or 160.
+    -> select * from employees where EMPLOYEE_ID = 150 or EMPLOYEE_ID = 160;
+
+12.Display first name, salary, commission pct, and hire date for employees with salary less than 10000.
+    -> select FIRST_NAME, SALARY, COMMISSION_PCT, HIRE_DATE from employees where SALARY < 10000;
+
+13.Display details of jobs in the descending order of the title.
+    -> select * from jobs order by JOB_TITLE desc;
+
+14.Display details of the employees where commission percentage is null and salary in the range 5000 to 10000 and department is 30.
+    -> select * from employees where COMMISSION_PCT is null and SALARY >= 5000 and SALARY <= 10000 and DEPARTMENT_ID = 30;
+-------------------------------------------------------------------
+15.Display employees first_name,email who are working in “Executive” department.
+    -> select FIRST_NAME, EMAIL from employees where 
+-------------------------------------------------------------------
+16.Display unique contry_id from locations table.
+    -> select distinct COUNTRY_ID from locations;
+
+17.Display all employees whose have job_id IT_PROG and FI_ACCOUNT
+    -> select * from employees where JOB_ID = 'IT_PROG' or JOB_ID = 'FI_ACCOUNT';
+
+18.Display all countries in ascending order.
+    -> select COUNTRY_NAME from countries order by COUNTRY_NAME asc;
+
+-------------------------------------------------------------------
+
+SPJ DATABASE
+
+1. Display all the data from the S table.
+    -> select * from S;
+
+2. Display only the S# and SNAME fields from the S table.
+    -> select `s#`, SNAME from S;
+
+3. Assuming that the Part Weight is in GRAMS, display the same in MILLIGRAMS and KILOGRAMS.
+    -> 
+
+4. Display the PNAME and COLOR from the P table for the CITY=”London”.
+    -> select Pname, color from p where CITY = 'London';
+
+5. Display all the Suppliers from London.
+    -> select * from s where CITY = 'London';
+
+6. Display all the Suppliers from Paris or Athens.
+    -> select * from s where CITY = 'Paris' or CITY = 'Athens';
+
+7. Display all the Projects in Athens.
+    -> select * from p where CITY = 'Athens';
+
+8. Display all the Partnames with the weight between 12 and 14 (inclusive of both).
+    -> select Pname from p where Weight >= 12 and Weight <= 14;
+
+9. Display all the Suppliers with a Status greater than or equal to 20.
+    -> select * from s where Status >= 20;
+
+10.Display all the Suppliers except the Suppliers from London.
+    -> select * from s where city != 'London';
+
+11.Display only the Cities from where the Suppliers come from.
+    -> select city from s;
+
+12.Display the Supplier table in the descending order of CITY.
+    -> select * from s order by city desc;
+
+13.Display the Part Table in the ascending order of CITY and within the city in the ascending order of Part names.
+    -> select * from p order by CITY asc, Pname asc;
+
+14.Display all the Suppliers with a status between 10 and 20.
+    -> select * from s where status >=10 and status <=20;
+
+15.Display all the Parts and their Weight, which are not in the range of 10 and 15.
+    -> select Pname, Weight from p where Weight < 10 and Weight > 15;
+
+-----------------------------------------------------------------
+
+SALES DATABASE
+
+1. Write a select command that produces the order number, amount, and date for all rows in the Orders table.
+    -> select onum, amt, odate from orders;
+
+2. Write a query that displays the Salespeople table with the columns in the following order: city, sname, snum, comm.
+    -> select city, sname,  snum, comm from salespeople;
+
+3. Write a query that produces all rows from the Customers table for which the salesperson’s number is 1001.
+    -> select * from customers where snum = 1001;
+
+4. Write a select command that produces the rating followed by the name of each customer in San Jose.
+    -> select rating from customers where city = 'San Jose';
+
+5. Write a query that will produce the snum values of all salespeople from the Orders table (with the duplicate values suppressed).
+    -> select distinct snum from salespeople order by snum;
+
+6. Write a query that will give you all orders for more than Rs. 1,000.
+    -> select * from orders where amt > 1000;
+
+7. Write a query that will give you the names and cities of all salespeople in London with a commission above 0.10.
+    -> select sname, city from salespeople where city = 'London' and comm > .10;
+
+8. Write a query on the Customers table whose output will exclude all customers with a rating <= 100, unless they are located in Rome.
+    -> select * from customers where rating > 100 or city = 'rome';
+
+9. Write a query that selects all orders except those with zeroes or NULLs in the amt field.
+    -> select * from orders where amt > 0 and amt is not null;

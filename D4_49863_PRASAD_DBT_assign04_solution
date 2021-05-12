@@ -1,0 +1,359 @@
+Name :- PRASAD SATPUTE
+Group :- D4
+Sub-Group :- C
+
+Note: To solve below queries use “sales” database
+Use appropriate SQL functions to solve following queries.
+1. Write a query that counts all orders for October 3.
+    -> select count(onum) as orders from orders where odate like '%-10-03';
+    +-------------+
+    | orders      |
+    +-------------+
+    |           5 |
+    +-------------+
+
+2. Write a query that counts the number of different non-NULL city values in the Customers table.
+    -> select count(cname) from customers where cname is not null;
+    +--------------+
+    | count(cname) |
+    +--------------+
+    |            7 |
+    +--------------+
+
+3. Find average commission of salespeople in London.
+    -> select avg(comm) from salespeople where city = 'London';
+    +-----------+
+    | avg(comm) |
+    +-----------+
+    |  0.115000 |
+    +-----------+
+
+4. Extract cnum, cname and city from customer table if and only if one or more of the customers in the table are located in San Jose.
+
+
+Note: To solve below queries use “spj” database
+Use appropriate SQL functions to solve following queries.
+
+
+5. Display all the Suppliers, belonging to cities starting with the letter ‘L’.
+    -> select * from s where substring(City, 1, 1) = 'L';
+    +------+-------+--------+--------+
+    | S#   | Sname | Status | City   |
+    +------+-------+--------+--------+
+    | S1   | Smith |     20 | London |
+    | S4   | Clark |     20 | London |
+    +------+-------+--------+--------+
+
+6. Display all the Projects, with the third letter in JNAME as ‘n’.
+    -> select * from j where substring(jname, 3, 1) = 'n';
+    +------+---------+--------+
+    | J#   | Jname   | City   |
+    +------+---------+--------+
+    | J2   | Punch   | Rome   |
+    | J4   | Console | Athens |
+    +------+---------+--------+
+
+
+7. Display all the Supplier names with the initial letter capital.
+    -> select * from s where substring(Sname, 1, 1) = upper(substring(Sname, 1, 1));
+    +------+-------+--------+--------+
+    | S#   | Sname | Status | City   |
+    +------+-------+--------+--------+
+    | S1   | Smith |     20 | London |
+    | S2   | Jones |     10 | Paris  |
+    | S3   | Blake |     30 | Paris  |
+    | S4   | Clark |     20 | London |
+    | S5   | Adams |     30 | Athens |
+    +------+-------+--------+--------+
+
+
+8. Display all the Supplier names in upper case.
+    -> select upper(Sname) from s;
+    +--------------+
+    | upper(Sname) |
+    +--------------+
+    | SMITH        |
+    | JONES        |
+    | BLAKE        |
+    | CLARK        |
+    | ADAMS        |
+    +--------------+
+
+
+9. Display all the Supplier names in lower case.
+    -> select lower(Sname) from s;
+    +--------------+
+    | lower(Sname) |
+    +--------------+
+    | smith        |
+    | jones        |
+    | blake        |
+    | clark        |
+    | adams        |
+    +--------------+
+
+
+10. Display the Supplier names and the lengths of the names.
+    -> select Sname, length(Sname) as Snamelength  from s;
+    +-------+-------------+
+    | Sname | Snamelength |
+    +-------+-------------+
+    | Smith |           5 |
+    | Jones |           5 |
+    | Blake |           5 |
+    | Clark |           5 |
+    | Adams |           5 |
+    +-------+-------------+
+
+
+11. Display the current day (e.g. Thursday).
+    -> select dayname(now());
+
+
+12. Display the minimum Status in the Supplier table.
+    -> select min(Status) from s;
+    +-------------+
+    | min(Status) |
+    +-------------+
+    |          10 |
+    +-------------+
+
+
+13. Display the maximum Weight in the Parts table.
+    -> select max(Status) from s;
+    +-------------+
+    | max(Status) |
+    +-------------+
+    |          30 |
+    +-------------+
+
+
+14. Display the average Weight of the Parts.
+    -> select avg(Weight) from p;
+    +-------------+
+    | avg(Weight) |
+    +-------------+
+    |     12.0000 |
+    +-------------+
+
+
+15. Display the total Quantity sold for part ‘P1’.
+    -> select sum(QTY) from sp where `P#` = 'P1';
+    +----------+
+    | sum(QTY) |
+    +----------+
+    |     1000 |
+    +----------+
+
+
+16. Display all the Supplier names (with ‘la’ replaced by ‘ro’).
+    -> select replace(Sname, 'la', 'ro') from s;
+    +----------------------------+
+    | replace(Sname, 'la', 'ro') |
+    +----------------------------+
+    | Smith                      |
+    | Jones                      |
+    | Broke                      |
+    | Crork                      |
+    | Adams                      |
+    +----------------------------+
+
+
+17. Implement the above command such that ‘l’ is replaced with ‘r’ and ‘a’ is replaced with ‘o’.
+    -> select replace(Sname, 'l', 'r'), replace(Sname, 'a', 'o') from s;
+    +--------------------------+--------------------------+
+    | replace(Sname, 'l', 'r') | replace(Sname, 'a', 'o') |
+    +--------------------------+--------------------------+
+    | Smith                    | Smith                    |
+    | Jones                    | Jones                    |
+    | Brake                    | Bloke                    |
+    | Crark                    | Clork                    |
+    | Adams                    | Adoms                    |
+    +--------------------------+--------------------------+
+
+
+Database Technologies – Assignment 4
+
+
+Sunbeam Institute of Information Technology, Pune & Karad.
+Note : To solve below queries use “hr” database
+Use appropriate SQL functions to solve following queries.
+
+
+18. Display first name and last name after converting the first letter of each name to upper case and the rest to lower case.
+    -> select 
+    concat(upper(substring(FIRST_NAME, 1, 1)), 
+    lower(substring(FIRST_NAME, 2, length(FIRST_NAME) - 1))) as FIRST_NAME, 
+    concat(upper(substring(LAST_NAME, 1, 1)), 
+    lower(substring(FIRST_NAME, 2, length(LAST_NAME) - 1))) as LAST_NAME from employees;
+    +-------------+-----------+
+    | FIRST_NAME  | LAST_NAME |
+    +-------------+-----------+
+    | Ellen       | Alle      |
+    | Sundar      | Aund      |
+    | Mozhe       | Aozhe     |
+    | David       | Aavid     |
+    | Hermann     | Berm      |
+    | Shelli      | Bhell     |
+    | Amit        | Bmit      |
+    | Elizabeth   | Bliza     |
+    | Sarah       | Bara      |
+    | David       | Bavid     |
+    | Laura       | Baura     |
+    | Harrison    | Barri     |
+    | Alexis      | Blex      |
+    | Anthony     | Cnthon    |
+    | Gerald      | Cerald    |
+    | Nanette     | Canette   |
+    | John        | Cohn      |
+    | Kelly       | Celly     |
+    | Karen       | Caren     |
+    | Curtis      | Durtis    |
+    | Lex         | Dex       |
+    | Julia       | Dulia     |
+    | Jennifer    | Denni     |
+    | Louise      | Douis     |
+    | Bruce       | Eruce     |
+    | Alberto     | Elberto   |
+    | Britney     | Eritney   |
+    | Daniel      | Faniel    |
+    | Pat         | Fat       |
+    | Kevin       | Fevin     |
+    | Jean        | Fean      |
+    | Tayler      | Fay       |
+    | Adam        | Fdam      |
+    | Timothy     | Gimot     |
+    | Ki          | Gi        |
+    | Girard      | Girar     |
+    | William     | Gilli     |
+    | Douglas     | Gougl     |
+    | Kimberely   | Gimbe     |
+    | Nancy       | Gancy     |
+    | Danielle    | Ganiel    |
+    | Peter       | Hete      |
+    | Michael     | Hichael   |
+    | Shelley     | Hhelley   |
+    | Guy         | Huy       |
+    | Alexander   | Hlexan    |
+    | Alyssa      | Hlyssa    |
+    | Charles     | Jharles   |
+    | Vance       | Jance     |
+    | Payam       | Kayam     |
+    | Alexander   | Klex      |
+    | Janette     | Kane      |
+    | Steven      | Ktev      |
+    | Neena       | Keena     |
+    | Sundita     | Kundi     |
+    | Renske      | Lenske    |
+    | James       | Lames     |
+    | David       | Lav       |
+    | Jack        | Lack      |
+    | Diana       | Liana     |
+    | Jason       | Mason     |
+    | Steven      | Mteven    |
+    | James       | Mames     |
+    | Mattea      | Mattea    |
+    | Randall     | Manda     |
+    | Susan       | Musan     |
+    | Samuel      | Mamuel    |
+    | Allan       | Mllan     |
+    | Irene       | Mrene     |
+    | Kevin       | Mevin     |
+    | Julia       | Nulia     |
+    | Donald      | Oonald    |
+    | Christopher | Ohris     |
+    | Tj          | Oj        |
+    | Lisa        | Oisa      |
+    | Karen       | Paren     |
+    | Valli       | Palli     |
+    | Joshua      | Poshu     |
+    | Randall     | Pandall   |
+    | Hazel       | Pazel     |
+    | Luis        | Puis      |
+    | Trenna      | Rren      |
+    | Den         | Ren       |
+    | Michael     | Richae    |
+    | John        | Rohn      |
+    | Nandita     | Sandita   |
+    | Ismael      | Ssmael    |
+    | John        | Soh       |
+    | Sarath      | Sarath    |
+    | Lindsey     | Sinds     |
+    | William     | Silli     |
+    | Stephen     | Stephe    |
+    | Martha      | Sartha    |
+    | Patrick     | Satri     |
+    | Jonathon    | Tonath    |
+    | Winston     | Tinsto    |
+    | Sigal       | Tigal     |
+    | Peter       | Teter     |
+    | Oliver      | Tliver    |
+    | Jose manuel | Uose      |
+    | Peter       | Veter     |
+    | Clara       | Vlara     |
+    | Shanta      | Vhanta    |
+    | Alana       | Wlana     |
+    | Matthew     | Watth     |
+    | Jennifer    | Wennif    |
+    | Eleni       | Zleni     |
+    +-------------+-----------+
+
+
+19. Display the first word in job title.
+    -> select substring(JOB_TITLE, 1, 1) from jobs;
+    +----------------------------+
+    | substring(JOB_TITLE, 1, 1) |
+    +----------------------------+
+    | P                          |
+    | A                          |
+    | A                          |
+    | F                          |
+    | A                          |
+    | A                          |
+    | P                          |
+    | S                          |
+    | S                          |
+    | P                          |
+    | P                          |
+    | S                          |
+    | S                          |
+    | S                          |
+    | P                          |
+    | M                          |
+    | M                          |
+    | H                          |
+    | P                          |
+    +----------------------------+
+
+
+20. Display the length of first name for employees where last name contain character ‘b’ after 3rd position.
+
+
+21. Display first name in upper case and email address in lower case for employees where the first name and email address are same irrespective of the case.
+
+
+22. Display first name, salary, and round the salary to thousands.
+
+
+23. Display employee ID and the date on which he ended his previous job.
+
+
+24. Display first name and date of first salary of the employees.
+
+
+25. Display first name and experience of the employees.
+
+
+26. Display first name of employees who joined in 2001.
+
+
+27. Display employees who joined in the current year.
+
+
+28. Display the number of days between system date and 1st January 2011.
+
+
+29. Display number of employees joined after 15th of the month.
+
+
+30. Display third highest salary of employees.
