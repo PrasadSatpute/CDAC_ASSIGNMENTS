@@ -1,0 +1,241 @@
+Name :- PRASAD SATPUTE
+Group :- D4
+Sub-Group :- C
+
+Note: To solve below queries use “sales” database
+*Use appropriate joins to solve following queries.
+
+
+1. Write a query that lists each order number followed by the name of the customer who made the order.
+    -> select o.onum, c.cname from orders o cross join customers c where c.cnum = o.cnum;
+    +------+----------+
+    | onum | cname    |
+    +------+----------+
+    | 3001 | Cisneros |
+    | 3003 | Hoffman  |
+    | 3002 | Pereira  |
+    | 3005 | Liu      |
+    | 3006 | Cisneros |
+    | 3009 | Giovanni |
+    | 3007 | Grass    |
+    | 3008 | Clemens  |
+    | 3010 | Grass    |
+    | 3011 | Clemens  |
+    +------+----------+
+
+
+2. Write a query that gives the names of both the salesperson and the customer for each order along with the order number.
+    -> select c.cname, s.sname, o.onum from salespeople s 
+    cross join customers c, orders o 
+    where o.cnum = c.cnum and c.snum = s.snum;
+    +----------+---------+------+
+    | cname    | sname   | onum |
+    +----------+---------+------+
+    | Cisneros | Rifkin  | 3001 |
+    | Hoffman  | Peel    | 3003 |
+    | Pereira  | Motika  | 3002 |
+    | Liu      | Serres  | 3005 |
+    | Cisneros | Rifkin  | 3006 |
+    | Giovanni | Axelrod | 3009 |
+    | Grass    | Serres  | 3007 |
+    | Clemens  | Peel    | 3008 |
+    | Grass    | Serres  | 3010 |
+    | Clemens  | Peel    | 3011 |
+    +----------+---------+------+
+
+
+3. Write a query that produces all customers serviced by salespeople with a commission above 12%. Output the customer’s name, the salesperson’s name, and the salesperson’s rate of commission.
+    -> select c.cname, s.sname, s.comm * 0.12 as `rate of comm` from customers c inner join salespeople s on s.snum = c.snum;
+    +----------+---------+--------------+
+    | cname    | sname   | rate of comm |
+    +----------+---------+--------------+
+    | Hoffman  | Peel    |       0.0144 |
+    | Giovanni | Axelrod |       0.0120 |
+    | Liu      | Serres  |       0.0156 |
+    | Grass    | Serres  |       0.0156 |
+    | Clemens  | Peel    |       0.0144 |
+    | Cisneros | Rifkin  |       0.0180 |
+    | Pereira  | Motika  |       0.0132 |
+    +----------+---------+--------------+
+
+
+4. Write a query that calculates the amount of the salesperson’s commission on each order by a customer with a rating above 100.
+
+
+5. Write a query that produces all pairs of salespeople who are living in the same city. Exclude combinations of salespeople with themselves as well as duplicate rows with the order reversed.
+    -> -> select s1.sname, s2.sname, s1.city from salespeople s1, salespeople s2 where s1.city = s2.city and s1.sname > s2.sname;
+    +-------+--------+--------+
+    | sname | sname  | city   |
+    +-------+--------+--------+
+    | Peel  | Motika | London |
+    +-------+--------+--------+
+
+
+Note: To solve below queries use “hr” database
+*Use appropriate joins to solve following queries.
+
+
+6. Display department name and manager first name.
+    -> select d.DEPARTMENT_NAME, e.FIRST_NAME from departments d inner join employees e on d.MANAGER_ID = e.EMPLOYEE_ID;
+    +------------------+------------+
+    | DEPARTMENT_NAME  | FIRST_NAME |
+    +------------------+------------+
+    | Administration   | Jennifer   |
+    | Marketing        | Michael    |
+    | Purchasing       | Den        |
+    | Human Resources  | Susan      |
+    | Shipping         | Adam       |
+    | IT               | Alexander  |
+    | Public Relations | Hermann    |
+    | Sales            | John       |
+    | Executive        | Steven     |
+    | Finance          | Nancy      |
+    | Accounting       | Shelley    |
+    +------------------+------------+
+
+
+7. Display department name, manager name, and city.
+    -> select d.DEPARTMENT_NAME, e.FIRST_NAME, l.CITY from departments d inner join employees e inner join locations l on d.MANAGER_ID = e.EMPLOYEE_ID and l.LOCATION_ID = d.LOCATION_ID;
+    +------------------+------------+---------------------+
+    | DEPARTMENT_NAME  | FIRST_NAME | CITY                |
+    +------------------+------------+---------------------+
+    | Administration   | Jennifer   | Seattle             |
+    | Marketing        | Michael    | Toronto             |
+    | Purchasing       | Den        | Seattle             |
+    | Human Resources  | Susan      | London              |
+    | Shipping         | Adam       | South San Francisco |
+    | IT               | Alexander  | Southlake           |
+    | Public Relations | Hermann    | Munich              |
+    | Sales            | John       | OX9 9ZB             |
+    | Executive        | Steven     | Seattle             |
+    | Finance          | Nancy      | Seattle             |
+    | Accounting       | Shelley    | Seattle             |
+    +------------------+------------+---------------------+
+
+
+8. Display country name, city, and department name.
+    -> select c.COUNTRY_NAME, l.CITY, d.DEPARTMENT_NAME from countries c inner join departments d inner join locations l on c.COUNTRY_ID = l.COUNTRY_ID and l.LOCATION_ID = d.LOCATION_ID;
+    +--------------------------+---------------------+----------------------+
+    | COUNTRY_NAME             | CITY                | DEPARTMENT_NAME      |
+    +--------------------------+---------------------+----------------------+
+    | United States of America | Seattle             | Administration       |
+    | Canada                   | Toronto             | Marketing            |
+    | United States of America | Seattle             | Purchasing           |
+    | United Kingdom           | London              | Human Resources      |
+    | United States of America | South San Francisco | Shipping             |
+    | United States of America | Southlake           | IT                   |
+    | Germany                  | Munich              | Public Relations     |
+    | United States of America | Seattle             | Executive            |
+    | United States of America | Seattle             | Finance              |
+    | United States of America | Seattle             | Accounting           |
+    | United States of America | Seattle             | Treasury             |
+    | United States of America | Seattle             | Corporate Tax        |
+    | United States of America | Seattle             | Control And Credit   |
+    | United States of America | Seattle             | Shareholder Services |
+    | United States of America | Seattle             | Benefits             |
+    | United States of America | Seattle             | Manufacturing        |
+    | United States of America | Seattle             | Construction         |
+    | United States of America | Seattle             | Contracting          |
+    | United States of America | Seattle             | Operations           |
+    | United States of America | Seattle             | IT Support           |
+    | United States of America | Seattle             | NOC                  |
+    | United States of America | Seattle             | IT Helpdesk          |
+    | United States of America | Seattle             | Government Sales     |
+    | United States of America | Seattle             | Retail Sales         |
+    | United States of America | Seattle             | Recruiting           |
+    | United States of America | Seattle             | Payroll              |
+    +--------------------------+---------------------+----------------------+
+
+
+9. Display job title, department name, employee last name, starting date for all jobs from 1993 to 1998.
+
+
+10. Display job title and average salary of employees.
+
+
+11. Display job title, employee name, and the difference between maximum salary for the job and salary of the employee.
+
+
+12. Display last name, job title of employees who have commission percentage and belongs to department 30.
+
+
+13. Display details of jobs that were done by any employee who is currently drawing more than 15000 of salary.
+
+
+14. Display department name, manager name, and salary of the manager for all managers whose experience is more than 5 years.
+
+
+15. Display employee name if the employee joined before his manager.
+
+
+16. Display employee name, job title for the jobs employee did in the past where the job was done less than six months.
+
+
+17. Display employee name and country in which he is working.
+
+
+18. Display department name, average salary and number of employees with commission within the department.
+
+
+19. Display the month in which more than 5 employees joined in any department located in Sydney.
+
+
+20. Display employee name, job title, start date, and end date of past jobs of all employees with commission percentage null.
+
+
+Note: To solve below queries use “spj” database
+*Use appropriate joins to solve following queries.
+
+
+21. Display the Supplier name and the Quantity sold.
+
+
+22. Display the Part name and Quantity sold.
+
+
+23. Display the Project name and Quantity sold.
+
+
+24. Display the Supplier name, Part name, Project name and Quantity sold.
+
+
+25. Display the Supplier name, Supplying Parts to a Project in the same City.
+
+
+26. Display the Part name that is ‘Red’ is color, and the Quantity sold.
+
+
+27. Display all the Quantity sold by Suppliers with the Status = 20.
+
+
+28. Display all the Parts and Quantity with a Weight > 14.
+
+
+29. Display all the Project names and City, which has bought more than 500 Parts.
+
+
+30. Display all the Part names and Quantity sold that have a Weight less than 15.
+
+
+31. Display all the Suppliers with the same Status as the supplier, ‘CLARK’.
+
+
+32. Display all the Employees in the same department as the employee ‘MILLER’.
+
+
+33. Display all the Parts which have more Weight than all the Red parts.
+
+
+34. Display all the Projects going on in the same city as the project ‘TAPE’.
+
+
+35. Display all the Parts with Weight less than all the Green parts.
+
+
+36. Display the name of the Supplier who has sold the maximum Quantity (in one sale).
+
+
+37. Display the name of the Employee with the minimum Salary.
+
+
+38. Display the name of the Supplier who has sold the maximum overall Quantity (sum of Sales).
